@@ -1,27 +1,32 @@
+
 {
-  "version":2,
-  "builds":[
-    {
-      "scr":"yoga_form/wsgi.py",
-      "use":@vercel/python",
-      "config":{"maxLambdaSize":"15mb","runtime":"python3.9"}
-    },
-    {
-    "scr":"build_files.sh",
-    "use":"@vercel/static-build",
-    "config":{
-    "distDir":"staticfiles_build"
-    }
-}
-],
-"routes":[
-  {
-"scr":"/static/(.*)",
-    "dest":"/static/$1"
-  },
-  {
-    "scr":"/(.*)",
-    "dest":"yoga_form/wsgi.py"
-  }
-  ]
+    "version": 2,
+    "builds": [
+        {
+            "src": "yoga_form/wsgi.py",
+            "use": "@vercel/python",
+            "config": {
+                "maxLambdaSize": "15mb",
+                "runtime": "python3.9"
+            }
+        },
+        {
+            "src": "build.sh",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "staticfiles_build"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/static/(.*)",
+            "dest": "/static/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "yoga_form/wsgi.py"
+        }
+    ]
+
 }
